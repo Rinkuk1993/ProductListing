@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app = "store">				<!-- run this module when document loads-->
+	<head>
+		<link rel = "stylesheet" type = "text/css" href="css/bootstrap.min.css"/>	
+		<link rel = "stylesheet" type = "text/css" href="css/StyleSheet.css"/>	
+		<script type = "text/javascript" src = "js/angular.min.js"></script>
+		<script type = "text/javascript" src = "js/app.js"></script>		
+	</head>
+	<body ng-controller = "StoreController as store">
+		<div  ng-repeat = "product in store.myOwnName" class = "page-content">	<!-- Goes through each object in array-->
+			<div class="header">
+			<div ng-hide = "product.soldOut">			<!-- "ng-show = "!store.myOwnName.soldOut"-->
+				<h1> {{product.name}} </h1>				<!-- no need to write store[0].myOwnName.name -->
+				<p><b>Order in date : </b>{{product.indate | date : 'MM/dd/yyyy EEEE hh:mm:ss'}} </p>
+				<p class = "price"><em> <!--class="pull-right"--> {{ product.price | currency }}</em></p>		<!-- prints value in currency format ie $2.99 -->
+				
+				<img ng-src = "{{ product.img[0].full}}" alt = "{{ product.img[0].full}}"/>		<!-- display first 'full' image of object array img -->
+				<br/>
+				
+				<button ng-show = "product.canPurchase">Add to Cart</button>	<!-- Display button only if canPurchase = true (by default btn nt displayed)-->
+				<b ng-show = "!product.canPurchase" style = "color : red; font-size : 16px">Sorry, Out of Stock!</b>
+				<br/>
+				<br/>
+				
+				<section ng-controller = "PanelController as panel">						<!-- CREATING 'TABS' & MAKING DESCRIPTION DEFAULT TAB -->
+					<ul class = "nav nav-pills">											<!-- HORIZONTAL ALIGNMENT OF TABS -->
+						<li ng-class = "{active: panel.isSelected(1)}"> 								<!-- HIGHLIGHT 'TAB' WHEN SELECTED -->
+							<a href ng-click = "panel.selectTab(1)"> Description </a> 					<!-- ASSIGNING VALUE TO "TAB" on clicking list item -->
+						</li>		
+						<li ng-class = "{active: panel.isSelected(2)}"> 
+							<a href ng-click = "panel.selectTab(2)"> Specification </a> 
+						</li>
+						<li ng-class = "{active: panel.isSelected(3)}"> 
+							<a href ng-click = "panel.selectTab(3)"> Reviews </a> 
+						</li>
+					</ul>
+				
+					<!-- displaying content as per tab selected/clicked by  user -->
+					<div class = "panel" ng-show = "panel.isSelected(1)">
+						<h4> Description </h4>
+						<p> {{product.description}} </p>
+					</div>
+					<div class = "panel" ng-show = "panel.isSelected(2)">
+						<h4> Specification </h4>
+						<p> {{product.specification}} </p>
+					</div>
+					<div class = "panel" ng-show = "panel.isSelected(3)">
+						<h4> Reviews </h4>
+						<p> {{product.review}} </p>
+					</div>
+				</section>
+				
+			</div>
+		</div>
+		</div>
+	</body>
+</html>
+</html>
