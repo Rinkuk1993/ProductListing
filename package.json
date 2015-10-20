@@ -1,0 +1,29 @@
+{
+  "name": "product_listing",
+  "version": "1.0.0",
+  "description": "Simple AngularJs application that lists the products",
+  "main": "myserver.js",
+  "dependencies": {
+    "express": "^4.13.3",
+    "body-parser": "^1.14.1"
+  },
+  "engine": "node >= 0.4.1",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rinkuk1993/ProductListing.git"
+  },
+  "keywords": [
+    "angularjs",
+    "product_listing"
+  ],
+  "author": "Rinku Kumari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rinkuk1993/ProductListing/issues"
+  },
+  "homepage": "https://github.com/Rinkuk1993/ProductListing#readme"
+}
